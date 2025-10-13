@@ -205,7 +205,7 @@
 
           <!-- Footer -->
           <div class="pt-4 text-xs text-gray-500">
-            © <span id="y"></span> Eluna.ID • Made with ♥ in Indonesia
+            © <span id="y"></span> Eluna.ID - Every Experience Matters • Made with 🩵 and ☕️
           </div>
         </div>
 
@@ -342,15 +342,15 @@
           body: JSON.stringify({ email: value })
         });
         const json = await res.json();
-        
         if (!res.ok) throw new Error(json?.error || 'Gagal mendaftar');
         
-        msg.textContent = '🎉 Berhasil! Cek email untuk konfirmasi. Terima kasih sudah bergabung.';
+        msg.textContent = '🎉 Yeayy... Berhasil! Cek email untuk konfirmasi. Terima kasih sudah bergabung.';
         msg.className = 'mt-4 text-center text-sm font-semibold text-green-600 bg-green-50 rounded-xl p-4';
         msg.classList.remove('hidden');
         form.reset();
       } catch (err) {
-        msg.textContent = 'Maaf, terjadi kendala. Coba lagi nanti. 😔';
+        console.log(err);
+        msg.textContent = 'Maaf, terjadi kendala 😔' + ' | ' + err;
         msg.className = 'mt-4 text-center text-sm font-semibold text-red-600 bg-red-50 rounded-xl p-4';
         msg.classList.remove('hidden');
       } finally { 

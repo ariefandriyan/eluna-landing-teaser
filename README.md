@@ -4,13 +4,13 @@
 
 > Platform rewards modern untuk brand dan konsumen Indonesia - Simpel, bernilai, dan penuh kejutan ✨
 
-Landing page pre-launch dengan sistem waiting list dan email confirmation untuk Eluna.ID. Dibangun dengan Node.js, Express, dan SQLite dengan desain modern dan clean menggunakan Tailwind CSS.
+Landing page pre-launch dengan sistem waiting list dan email confirmation untuk Eluna.ID. Dibangun dengan Node.js, Express, dan Supabase dengan desain modern dan clean menggunakan Tailwind CSS.
 
 ## ✨ Fitur
 
 - 🎯 **Pre-registration System** - Sistem pendaftaran waiting list dengan validasi email
 - 📧 **Email Confirmation** - Verifikasi email otomatis dengan secure token
-- 💾 **SQLite Database** - Penyimpanan data waitlist yang efisien
+- 💾 **Supabase Database** - Penyimpanan data waitlist di cloud dengan real-time capabilities
 - 🎨 **Modern UI/UX** - Desain clean dengan split-screen layout dan Nunito Sans font
 - ⌨️ **Typing Animation** - Animated headline menggunakan Typed.js
 - 🔄 **Hot Reload** - Development dengan live reload untuk perubahan real-time
@@ -18,6 +18,7 @@ Landing page pre-launch dengan sistem waiting list dan email confirmation untuk 
 - 🐳 **Docker Ready** - Full containerization dengan Docker Compose
 - 📱 **Responsive Design** - Mobile-first design yang fit dalam 1 page tanpa scroll
 - 🎨 **Glass Morphism** - Efek glass dengan backdrop blur untuk UI modern
+- 🌐 **Background Pattern** - Animated rotating logo pattern dengan color variations
 
 ## 🚀 Quick Start
 
@@ -50,6 +51,11 @@ Landing page pre-launch dengan sistem waiting list dan email confirmation untuk 
    PORT=3000
    BASE_URL=http://localhost:3000
    
+   # Supabase Configuration
+   SUPABASE_URL=https://your-project-id.supabase.co
+   SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   
    # SMTP Configuration (untuk production)
    SMTP_HOST=smtp.gmail.com
    SMTP_PORT=587
@@ -61,7 +67,21 @@ Landing page pre-launch dengan sistem waiting list dan email confirmation untuk 
    # SMTP_PORT=1025
    ```
 
-4. **Run development server**
+4. **Setup Supabase Database**
+   
+   Lihat [SUPABASE_SETUP.md](SUPABASE_SETUP.md) untuk instruksi lengkap membuat table dan konfigurasi.
+   
+   Quick setup:
+   ```sql
+   CREATE TABLE early_registrar (
+     id BIGSERIAL PRIMARY KEY,
+     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+     registrar_email TEXT UNIQUE NOT NULL,
+     registrar_status INTEGER DEFAULT 0
+   );
+   ```
+
+5. **Run development server**
    ```bash
    npm run dev
    ```
