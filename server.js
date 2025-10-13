@@ -13,6 +13,25 @@ import { createClient } from '@supabase/supabase-js';
 // Load environment variables
 dotenv.config();
 
+// Validate required environment variables
+const requiredEnvVars = ['SUPABASE_URL', 'SUPABASE_ANON_KEY'];
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+if (missingEnvVars.length > 0) {
+  console.error('❌ Missing required environment variables:');
+  missingEnvVars.forEach(varName => {
+    console.error(`   - ${varName}`);
+  });
+  console.error('\nPlease set these in your .env file or deployment platform.');
+  process.exit(1);
+}
+
+// Log environment variable status (without showing actual values)
+console.log('📋 Environment variables check:');
+console.log(`   SUPABASE_URL: ${process.env.SUPABASE_URL ? '✅ Set' : '❌ Missing'}`);
+console.log(`   SUPABASE_ANON_KEY: ${process.env.SUPABASE_ANON_KEY ? '✅ Set' : '❌ Missing'}`);
+console.log(`   NODE_ENV: ${process.env.NODE_ENV || 'development'}`);
+
 // Initialize Supabase client
 // Using ANON_KEY since RLS is disabled on the table
 const supabase = createClient(
@@ -20,7 +39,7 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
-console.log('✅ Supabase initialized with anon key (RLS disabled)');
+console.log('✅ Supabase initialized successfully');
 
 // ES6 module path helpers
 const __filename = fileURLToPath(import.meta.url);
