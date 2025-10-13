@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eluna.ID - Every Experience Matters</title>
+  <meta name="description" content="Platform loyalty yang simpel dan menyenangkan. Join waiting list untuk akses early access dan benefit eksklusif.">
+  <link rel="icon" type="image/png" href="logo/Logogram.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Nunito Sans', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            'eluna-purple': '#003084',
+            'eluna-pink': '#EC4899',
+            'eluna-blue': '#003084',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    body {
+      background: #ffffff;
+      background-attachment: fixed;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .shadow-soft {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="h-screen overflow-hidden font-sans">
+
+  <!-- Background decoration -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <!-- Background Decoration -->
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+  </div>
+
+  <main class="relative h-screen flex items-center">
+    <div class="w-full max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        
+        <!-- Left Section - Hero -->
+        <div class="space-y-4">
+          <!-- Badge & Logo -->
+          <div class="space-y-3">
+            <div class="inline-flex items-center rounded-full bg-white/90 backdrop-blur-sm shadow-md px-2.5 py-1 text-xs font-semibold" style="color: #003084;">
+              <span class="animate-pulse mr-1.5">✨</span>
+              Pre‑launch • ETA <span id="launchEta" class="ml-1 font-bold">Segera</span>
+            </div>
+            
+            <img 
+              src="logo/Grand Logo.png" 
+              alt="Eluna.ID Logo" 
+              class="h-20 w-auto"
+            >
+          </div>
+
+          <!-- Headline -->
+          <div>
+            <h2 class="text-3xl lg:text-4xl font-black leading-tight text-gray-900">
+              Cara <span style="color: #003084;"><span id="typed-text"></span></span><br/>untuk Earn Rewards
+            </h2>       
+            <p class="text-lg text-gray-700 mb-2">
+              Platform rewards modern untuk brand dan konsumen Anda
+            </p>
+            
+            <p class="text-sm text-gray-600">
+              Simpel, bernilai, dan penuh kejutan ✨
+            </p>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="grid grid-cols-3 gap-3 pt-3">
+            <div class="text-center">
+              <div class="text-3xl mb-1.5">🎯</div>
+              <p class="text-xs font-semibold text-gray-900">Prioritas Username</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="text-3xl mb-1.5">💎</div>
+              <p class="text-xs font-semibold text-gray-900">Bonus Poin</p>
+            </div>
+            
+            <div class="text-center">
+              <div class="text-3xl mb-1.5">💬</div>
+              <p class="text-xs font-semibold text-gray-900">Early Access</p>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="pt-4 text-xs text-gray-500">
+            © <span id="y"></span> Eluna.ID • Made with ♥ in Indonesia
+          </div>
+        </div>
+
+        <!-- Right Section - Form & FAQ -->
+        <div class="space-y-4">
+          
+          <!-- Pre-register Form -->
+          <div id="pre" class="glass-effect rounded-3xl shadow-soft p-6">
+            <div class="mb-4">
+              <h2 class="text-2xl font-bold mb-1.5" style="color: #003084;">
+                Join Waiting List
+              </h2>
+              <p class="text-sm text-gray-600">
+                Daftar sekarang dan dapatkan akses early bird! 🎁
+              </p>
+            </div>
+
+            <form id="preForm" class="space-y-3" novalidate>
+              <div class="relative">
+                <label class="block text-xs font-semibold text-gray-700 mb-1" for="email">
+                  Email Address
+                </label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
+                    📧
+                  </span>
+                  <input 
+                    id="email" 
+                    name="email" 
+                    type="email" 
+                    required 
+                    autocomplete="email" 
+                    placeholder="nama@domain.com" 
+                    class="w-full rounded-xl bg-gray-50 border-2 border-gray-200 pl-10 pr-4 py-2.5 text-sm outline-none focus:bg-white transition-all text-gray-900 font-medium"
+                    style="border-color: #d1d5db;"
+                    onfocus="this.style.borderColor='#003084'"
+                    onblur="this.style.borderColor='#d1d5db'"
+                  />
+                </div>
+              </div>
+
+              <button 
+                id="submitBtn" 
+                type="submit"
+                class="w-full rounded-xl px-5 py-2.5 text-white text-sm font-bold active:scale-95 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed"
+                style="background-color: #003084;"
+                onmouseover="this.style.backgroundColor='#002060'"
+                onmouseout="this.style.backgroundColor='#003084'"
+              >
+                Daftar Sekarang 🎉
+              </button>
+            </form>
+
+            <p id="formHelp" class="mt-2.5 text-xs text-center text-gray-500">
+              🔒 Kami menjaga privasi Anda. No spam, promise!
+            </p>
+            <p id="formMsg" class="mt-2.5 text-center text-xs font-semibold hidden"></p>
+          </div>
+
+          <!-- FAQ Compact -->
+          <div id="faq" class="glass-effect rounded-3xl shadow-soft p-5">
+            <h3 class="text-lg font-bold mb-2.5" style="color: #003084;">
+              FAQ
+            </h3>
+            
+            <div class="space-y-1.5">
+              <details class="group">
+                <summary class="cursor-pointer font-semibold text-xs text-gray-900 bg-gray-50 hover:bg-gray-100 rounded-lg p-2.5 transition-all list-none flex items-center justify-between">
+                  <span>Kapan launching?</span>
+                  <span class="transform group-open:rotate-180 transition-transform text-xs">▼</span>
+                </summary>
+                <p class="mt-1.5 text-xs text-gray-600 px-2.5 pb-1.5">
+                  Beberapa minggu lagi. Join waiting list untuk kabar paling awal! 🚀
+                </p>
+              </details>
+              
+              <details class="group">
+                <summary class="cursor-pointer font-semibold text-xs text-gray-900 bg-gray-50 hover:bg-gray-100 rounded-lg p-2.5 transition-all list-none flex items-center justify-between">
+                  <span>Apa benefit early access?</span>
+                  <span class="transform group-open:rotate-180 transition-transform text-xs">▼</span>
+                </summary>
+                <p class="mt-1.5 text-xs text-gray-600 px-2.5 pb-1.5">
+                  Prioritas username, bonus poin, dan akses feedback. Plus kejutan spesial! 🎁
+                </p>
+              </details>
+
+              <details class="group">
+                <summary class="cursor-pointer font-semibold text-xs text-gray-900 bg-gray-50 hover:bg-gray-100 rounded-lg p-2.5 transition-all list-none flex items-center justify-between">
+                  <span>Gratis atau berbayar?</span>
+                  <span class="transform group-open:rotate-180 transition-transform text-xs">▼</span>
+                </summary>
+                <p class="mt-1.5 text-xs text-gray-600 px-2.5 pb-1.5">
+                  Gratis untuk pengguna! Brand yang membayar, konsumen yang menikmati. 🎉
+                </p>
+              </details>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Decorative ETA (30 days from now)
+    const eta = new Date(); 
+    eta.setDate(eta.getDate() + 30);
+    const fmt = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    document.getElementById('launchEta').textContent = fmt.format(eta);
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Pre-register submit
+    const form = document.getElementById('preForm');
+    const email = document.getElementById('email');
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+      msg.classList.add('hidden'); 
+      msg.textContent = ''; 
+      btn.disabled = true;
+      
+      const value = email.value.trim();
+      if (!value) { 
+        btn.disabled = false; 
+        return; 
+      }
+      
+      try {
+        const res = await fetch('/api/pre-register', {
+          method: 'POST', 
+          headers: { 'Content-Type': 'application/json' }, 
+          body: JSON.stringify({ email: value })
+        });
+        const json = await res.json();
+        
+        if (!res.ok) throw new Error(json?.error || 'Gagal mendaftar');
+        
+        msg.textContent = '🎉 Berhasil! Cek email untuk konfirmasi. Terima kasih sudah bergabung.';
+        msg.className = 'mt-4 text-center text-sm font-semibold text-green-600 bg-green-50 rounded-xl p-4';
+        msg.classList.remove('hidden');
+        form.reset();
+      } catch (err) {
+        msg.textContent = 'Maaf, terjadi kendala. Coba lagi nanti. 😔';
+        msg.className = 'mt-4 text-center text-sm font-semibold text-red-600 bg-red-50 rounded-xl p-4';
+        msg.classList.remove('hidden');
+      } finally { 
+        btn.disabled = false; 
+      }
+    });
+  </script>
+
+  <!-- Typed.js Animation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var typed = new Typed('#typed-text', {
+        strings: [
+          'yang Menyenangkan',
+          'yang Menguntungkan',
+          'yang Simpel',
+          'yang Bernilai',
+          'yang Seru'
+        ],
+        typeSpeed: 80,
+        backSpeed: 50,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        autoInsertCss: true
+      });
+    });
+  </script>
+</body>
+```
+  </script>
+</body>
+</html>

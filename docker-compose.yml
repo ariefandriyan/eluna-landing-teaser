@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    ports: ["3000:3000"]
+    environment:
+      - PORT=3000
+      - PUBLIC_URL=http://localhost:3000
+      - MAIL_FROM=Eluna.ID <no-reply@eluna.id>
+      - SMTP_HOST=maildev
+      - SMTP_PORT=1025
+    volumes:
+    - ./public:/app/public
+    - ./data.sqlite:/app/data.sqlite
+    depends_on:
+      - maildev
+  maildev:
+    image: maildev/maildev:latest
+    ports: ["1080:1080", "1025:1025"]
