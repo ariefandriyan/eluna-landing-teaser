@@ -44,16 +44,111 @@
     .shadow-soft {
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     }
+    
+    /* Logo Pattern Animation */
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .animate-spin-slow {
+      animation: spin-slow linear infinite;
+    }
   </style>
 </head>
 <body class="h-screen overflow-hidden font-sans">
 
   <!-- Background decoration -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none">
-    <!-- Background Decoration -->
-    <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+    <!-- Logo Pattern Background with Inline SVG for Color Control -->
+    <div class="absolute inset-0 opacity-8">
+      <!-- Top Left Cluster -->
+      <div class="absolute -top-20 -left-20 w-64 h-64 animate-spin-slow" style="animation-duration: 40s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#003084" opacity="0.15" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#003084" opacity="0.15" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#003084" opacity="0.15" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#003084" opacity="0.15" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Top Right -->
+      <div class="absolute top-10 right-10 w-48 h-48 animate-spin-slow" style="animation-duration: 50s; animation-direction: reverse;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#0066CC" opacity="0.12" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#0066CC" opacity="0.12" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#0066CC" opacity="0.12" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#0066CC" opacity="0.12" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Middle Left -->
+      <div class="absolute top-1/3 left-20 w-56 h-56 animate-spin-slow" style="animation-duration: 45s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#4A90E2" opacity="0.1" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#4A90E2" opacity="0.1" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#4A90E2" opacity="0.1" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#4A90E2" opacity="0.1" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Middle Right -->
+      <div class="absolute top-1/2 right-32 w-40 h-40 animate-spin-slow" style="animation-duration: 35s; animation-direction: reverse;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#6B5B95" opacity="0.13" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#6B5B95" opacity="0.13" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#6B5B95" opacity="0.13" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#6B5B95" opacity="0.13" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Bottom Left -->
+      <div class="absolute bottom-20 left-40 w-52 h-52 animate-spin-slow" style="animation-duration: 55s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#5B9BD5" opacity="0.11" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#5B9BD5" opacity="0.11" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#5B9BD5" opacity="0.11" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#5B9BD5" opacity="0.11" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Bottom Right Cluster -->
+      <div class="absolute -bottom-16 -right-16 w-72 h-72 animate-spin-slow" style="animation-duration: 48s; animation-direction: reverse;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#002060" opacity="0.14" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#002060" opacity="0.14" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#002060" opacity="0.14" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#002060" opacity="0.14" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Center Small -->
+      <div class="absolute top-1/4 left-1/2 w-32 h-32 animate-spin-slow" style="animation-duration: 30s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#3498DB" opacity="0.09" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#3498DB" opacity="0.09" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#3498DB" opacity="0.09" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#3498DB" opacity="0.09" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <!-- Extra Small Scattered -->
+      <div class="absolute top-3/4 right-1/4 w-36 h-36 animate-spin-slow" style="animation-duration: 42s; animation-direction: reverse;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#7B68EE" opacity="0.12" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#7B68EE" opacity="0.12" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#7B68EE" opacity="0.12" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#7B68EE" opacity="0.12" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+    </div>
+    
+    <!-- Gradient Overlay for Depth -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30"></div>
   </div>
 
   <main class="relative h-screen flex items-center">
