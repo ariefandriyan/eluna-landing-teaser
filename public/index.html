@@ -60,12 +60,12 @@
     }
   </style>
 </head>
-<body class="h-screen overflow-hidden font-sans">
+<body class="min-h-screen font-sans lg:h-screen lg:overflow-hidden">
 
   <!-- Background decoration -->
   <div class="fixed inset-0 overflow-hidden pointer-events-none">
     <!-- Logo Pattern Background with Inline SVG for Color Control -->
-    <div class="absolute inset-0 opacity-8">
+    <div class="absolute inset-0 opacity-8 hidden lg:block">
       <!-- Top Left Cluster -->
       <div class="absolute -top-20 -left-20 w-64 h-64 animate-spin-slow" style="animation-duration: 40s;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
@@ -147,36 +147,59 @@
       </div>
     </div>
     
+    <!-- Simplified mobile background -->
+    <div class="absolute inset-0 lg:hidden">
+      <div class="absolute top-10 right-4 w-24 h-24 animate-spin-slow" style="animation-duration: 30s;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#003084" opacity="0.1" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#003084" opacity="0.1" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#003084" opacity="0.1" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#003084" opacity="0.1" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+      
+      <div class="absolute bottom-20 left-4 w-20 h-20 animate-spin-slow" style="animation-duration: 40s; animation-direction: reverse;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170.13 166.47" class="w-full h-full">
+          <path fill="#0066CC" opacity="0.08" d="M77.07,87.08A54.48,54.48,0,0,1,0,54.25,54.49,54.49,0,0,1,77.07,87.08Z"/>
+          <path fill="#0066CC" opacity="0.08" d="M85.71,94.61a54.47,54.47,0,0,1,43.05,71.86,54.5,54.5,0,0,1-43-71.86Z"/>
+          <path fill="#0066CC" opacity="0.08" d="M83.14,83.44A54.46,54.46,0,0,1,90.55,0a54.46,54.46,0,0,1-7.41,83.44Z"/>
+          <path fill="#0066CC" opacity="0.08" d="M88.48,88.09a54.48,54.48,0,0,1,81.65-18.74A54.47,54.47,0,0,1,88.48,88.09Z"/>
+        </svg>
+      </div>
+    </div>
+    
     <!-- Gradient Overlay for Depth -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30"></div>
   </div>
 
-  <main class="relative h-screen flex items-center">
+  <main class="relative min-h-screen lg:h-screen flex items-center p-4 py-8 lg:py-4">
     <div class="w-full max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
         
         <!-- Left Section - Hero -->
-        <div class="space-y-4">
+        <div class="space-y-4 order-1 lg:order-1">
           <!-- Badge & Logo -->
-          <div class="space-y-3">
+          <div class="space-y-3 text-center lg:text-left">
             <div class="inline-flex items-center rounded-full bg-white/90 backdrop-blur-sm shadow-md px-2.5 py-1 text-xs font-semibold" style="color: #003084;">
               <span class="animate-pulse mr-1.5">✨</span>
               Pre‑launch • ETA <span id="launchEta" class="ml-1 font-bold">Segera</span>
             </div>
             
-            <img 
-              src="logo/Grand Logo.png" 
-              alt="Eluna.ID Logo" 
-              class="h-20 w-auto"
-            >
+            <div class="flex justify-center lg:justify-start">
+              <img 
+                src="logo/Grand Logo.png" 
+                alt="Eluna.ID Logo" 
+                class="h-16 sm:h-20 w-auto"
+              >
+            </div>
           </div>
 
           <!-- Headline -->
-          <div>
-            <h2 class="text-3xl lg:text-4xl font-black leading-tight text-gray-900">
+          <div class="text-center lg:text-left">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-gray-900">
               Cara <span style="color: #003084;"><span id="typed-text"></span></span><br/>untuk Earn Rewards
             </h2>       
-            <p class="text-lg text-gray-700 mb-2">
+            <p class="text-base sm:text-lg text-gray-700 mb-2">
               Platform rewards modern untuk brand dan konsumen Anda
             </p>
             
@@ -186,36 +209,31 @@
           </div>
 
           <!-- Features Grid -->
-          <div class="grid grid-cols-3 gap-3 pt-3">
+          <div class="grid grid-cols-3 gap-3 pt-3 max-w-md mx-auto lg:mx-0">
             <div class="text-center">
-              <div class="text-3xl mb-1.5">🎯</div>
+              <div class="text-2xl sm:text-3xl mb-1.5">🎯</div>
               <p class="text-xs font-semibold text-gray-900">Member Prioritas</p>
             </div>
             
             <div class="text-center">
-              <div class="text-3xl mb-1.5">💎</div>
+              <div class="text-2xl sm:text-3xl mb-1.5">💎</div>
               <p class="text-xs font-semibold text-gray-900">Bonus Poin</p>
             </div>
             
             <div class="text-center">
-              <div class="text-3xl mb-1.5">💬</div>
+              <div class="text-2xl sm:text-3xl mb-1.5">💬</div>
               <p class="text-xs font-semibold text-gray-900">Early Access</p>
             </div>
-          </div>
-
-          <!-- Footer -->
-          <div class="pt-4 text-xs text-gray-500">
-            © <span id="y"></span> Eluna.ID - Every Experience Matters • Made with 🩵 and ☕️
           </div>
         </div>
 
         <!-- Right Section - Form & FAQ -->
-        <div class="space-y-4">
+        <div class="space-y-4 order-2 lg:order-2">
           
           <!-- Pre-register Form -->
-          <div id="pre" class="glass-effect rounded-3xl shadow-soft p-6">
+          <div id="pre" class="glass-effect rounded-3xl shadow-soft p-5 sm:p-6">
             <div class="mb-4">
-              <h2 class="text-2xl font-bold mb-1.5" style="color: #003084;">
+              <h2 class="text-xl sm:text-2xl font-bold mb-1.5" style="color: #003084;">
                 Join Waiting List Yuk !!!
               </h2>
               <p class="text-sm text-gray-600">
@@ -260,13 +278,13 @@
             </form>
 
             <p id="formHelp" class="mt-2.5 text-xs text-center text-gray-500">
-              🔒 Kami menjaga privasi Anda. No spam, promise!
+              🔒 Kami menjaga privasi Anda. No spam, promise!, Hanya beberapa email promosi menarik 🙂
             </p>
             <p id="formMsg" class="mt-2.5 text-center text-xs font-semibold hidden"></p>
           </div>
 
           <!-- FAQ Compact -->
-          <div id="faq" class="glass-effect rounded-3xl shadow-soft p-5">
+          <div id="faq" class="glass-effect rounded-3xl shadow-soft p-4 sm:p-5">
             <h3 class="text-lg font-bold mb-2.5" style="color: #003084;">
               FAQ
             </h3>
@@ -309,13 +327,26 @@
     </div>
   </main>
 
+  <!-- Footer - Now properly positioned -->
+  <footer class="relative z-10 py-4 lg:absolute lg:bottom-4 lg:left-4">
+    <div class="text-center lg:text-left">
+      <p class="text-xs text-gray-500">
+        © <span id="y"></span> Eluna.ID - Every Experience Matters • Made with 🩵 and ☕️
+      </p>
+    </div>
+  </footer>
+
   <script>
     // Decorative ETA (30 days from now)
     const eta = new Date(); 
     eta.setDate(eta.getDate() + 30);
-    const fmt = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    const fmt = new Intl.DateTimeFormatter('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
     document.getElementById('launchEta').textContent = fmt.format(eta);
-    document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Set current year in footer
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('y').textContent = new Date().getFullYear();
+    });
 
     // Pre-register submit
     const form = document.getElementById('preForm');
@@ -382,7 +413,6 @@
     });
   </script>
 </body>
-```
   </script>
 </body>
 </html>
