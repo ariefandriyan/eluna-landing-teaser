@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error - Eluna.ID</title>
+  <link rel="icon" type="image/png" href="/logo/Logogram.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Nunito Sans', Inter, Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #dc2626 0%, #f87171 50%, #fca5a5 100%);
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.4);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+      animation: slideUp 0.6s ease-out;
+    }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: shake 0.5s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    h1 { 
+      color: #dc2626; 
+      margin-bottom: 20px;
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 800;
+    }
+    .error-message {
+      color: #64748b; 
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: clamp(14px, 2.5vw, 16px);
+    }
+    .error-details {
+      background: #fef2f2;
+      border: 2px solid #fecaca;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 25px 0;
+      color: #b91c1c;
+      font-family: monospace;
+      font-size: 14px;
+      text-align: left;
+      word-break: break-word;
+    }
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    }
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(220, 38, 38, 0.5);
+    }
+    .cta-button:active {
+      transform: translateY(-1px);
+    }
+    .support-info {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 2px solid #f1f5f9;
+      color: #64748b;
+      font-size: 14px;
+    }
+    .support-info strong {
+      color: #374151;
+    }
+    @media (max-width: 640px) {
+      .card {
+        padding: 35px 25px;
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">❌</div>
+    <h1>Oops! Terjadi Kesalahan</h1>
+    <div class="error-message">
+      Maaf, terjadi kesalahan saat mengkonfirmasi email Anda.
+    </div>
+    <div class="error-message">
+      Silakan coba lagi atau hubungi tim support jika masalah berlanjut.
+    </div>
+    
+    <div class="error-details">
+      <strong>Error Details:</strong><br>
+      {{ERROR_MESSAGE}}
+    </div>
+    
+    <a href="/" class="cta-button">
+      🏠 Kembali ke Halaman Utama
+    </a>
+    
+    <div class="support-info">
+      <strong>Butuh bantuan?</strong><br>
+      Hubungi kami di support@eluna.id atau coba daftar ulang dari halaman utama.
+    </div>
+  </div>
+</body>
+</html>

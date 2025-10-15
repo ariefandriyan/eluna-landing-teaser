@@ -340,7 +340,7 @@
     // Decorative ETA (30 days from now)
     const eta = new Date(); 
     eta.setDate(eta.getDate() + 30);
-    const fmt = new Intl.DateTimeFormatter('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    const fmt = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
     document.getElementById('launchEta').textContent = fmt.format(eta);
     
     // Set current year in footer

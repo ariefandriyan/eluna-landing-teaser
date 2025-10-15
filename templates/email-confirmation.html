@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Nunito Sans', Inter, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #003084 0%, #0066CC 100%);
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .header h1 {
+      color: white;
+      margin: 0;
+      font-size: 28px;
+      font-weight: 800;
+    }
+    .header .icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+    .content {
+      padding: 40px 30px;
+    }
+    .greeting {
+      font-size: 18px;
+      color: #003084;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .message {
+      font-size: 16px;
+      color: #475569;
+      margin-bottom: 30px;
+    }
+    .cta-button {
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #003084 0%, #0066CC 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 48, 132, 0.3);
+      transition: all 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 48, 132, 0.4);
+    }
+    .fallback-link {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #f1f5f9;
+      font-size: 14px;
+      color: #64748b;
+    }
+    .fallback-link a {
+      color: #003084;
+      word-break: break-all;
+    }
+    .benefits {
+      margin-top: 30px;
+      padding: 25px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border-left: 4px solid #003084;
+    }
+    .benefits h3 {
+      color: #003084;
+      margin: 0 0 15px 0;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      color: #475569;
+      font-size: 15px;
+    }
+    .benefit-icon {
+      font-size: 20px;
+    }
+    .footer {
+      padding: 30px;
+      text-align: center;
+      background: #f8fafc;
+      color: #64748b;
+      font-size: 14px;
+      border-top: 2px solid #f1f5f9;
+    }
+    .footer .logo {
+      font-weight: 800;
+      color: #003084;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="icon">✨</div>
+      <h1>Selamat Datang di Eluna.ID!</h1>
+    </div>
+    
+    <div class="content">
+      <div class="greeting">
+        Halo! Terima kasih sudah bergabung! 🎉
+      </div>
+      
+      <div class="message">
+        Kamu berhasil pre-register di <strong>Eluna.ID</strong>. Untuk mengkonfirmasi email dan resmi masuk waiting list, silakan klik tombol konfirmasi di bawah ini.
+      </div>
+      
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="{{CONFIRM_URL}}" class="cta-button">
+          🎯 Konfirmasi Email Sekarang
+        </a>
+      </div>
+      
+      <div class="benefits">
+        <h3>🎁 Benefit Early Access:</h3>
+        <div class="benefit-item">
+          <span class="benefit-icon">🎯</span>
+          <span>Prioritas pemilihan username unik</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">💎</span>
+          <span>Bonus poin eksklusif saat launch</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">💬</span>
+          <span>Early access ke fitur beta terbaru</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🎊</span>
+          <span>Kejutan spesial hanya untuk early members</span>
+        </div>
+      </div>
+      
+      <div class="fallback-link">
+        <strong>Jika tombol tidak berfungsi,</strong> copy dan paste link berikut ke browser:
+        <br><br>
+        <a href="{{CONFIRM_URL}}">{{CONFIRM_URL}}</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <div class="logo">Eluna.ID</div>
+      <div>Platform loyalty yang simpel dan menyenangkan</div>
+      <div style="margin-top: 10px;">
+        Made with 🩵 and ☕️ • Every Experience Matters
+      </div>
+    </div>
+  </div>
+</body>
+</html>

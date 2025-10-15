@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import fs from 'fs/promises';
 import nodemailer from 'nodemailer';
 import validator from 'validator';
 import crypto from 'crypto';
@@ -44,6 +45,43 @@ console.log('✅ Supabase initialized successfully');
 // ES6 module path helpers
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Template helper functions
+async function loadTemplate(templateName, replacements = {}) {
+  try {
+    const templatePath = path.join(__dirname, 'templates', `${templateName}.html`);
+    let template = await fs.readFile(templatePath, 'utf-8');
+    
+    // Replace placeholders with actual values
+    for (const [key, value] of Object.entries(replacements)) {
+      const placeholder = `{{${key}}}`;
+      template = template.replace(new RegExp(placeholder, 'g'), value);
+    }
+    
+    return template;
+  } catch (error) {
+    console.error(`Error loading template ${templateName}:`, error);
+    throw error;
+  }
+}
+
+async function loadEmailTemplate(confirmUrl) {
+  return await loadTemplate('email-confirmation', {
+    CONFIRM_URL: confirmUrl
+  });
+}
+
+async function loadThankYouTemplate(email) {
+  return await loadTemplate('thank-you', {
+    USER_EMAIL: email
+  });
+}
+
+async function loadErrorTemplate(errorMessage) {
+  return await loadTemplate('error', {
+    ERROR_MESSAGE: errorMessage
+  });
+}
 
 // Create livereload server in development mode
 if (process.env.NODE_ENV !== 'production') {
@@ -128,6 +166,9 @@ app.post('/api/pre-register', async (req, res) => {
     // Generate confirmation URL
     const confirmUrl = `${process.env.PUBLIC_URL || 'http://localhost:3000'}/confirm?token=${token}&email=${encodeURIComponent(email)}`;
 
+    // Load email template
+    const emailHtml = await loadEmailTemplate(confirmUrl);
+
     // Send confirmation email
     try {
       await transporter.sendMail({
@@ -135,21 +176,7 @@ app.post('/api/pre-register', async (req, res) => {
         to: email,
         subject: 'Kamu ada di waiting list Eluna.ID ✨',
         text: `Terima kasih sudah pre-register! Klik konfirmasi: ${confirmUrl}`,
-        html: `
-          <div style="font-family:Inter,Arial,sans-serif;font-size:15px;color:#0f172a">
-            <p>Terima kasih sudah pre-register di <b>Eluna.ID</b>! 🎉</p>
-            <p>Konfirmasi email kamu dengan tombol di bawah agar resmi masuk waiting list.</p>
-            <p>
-              <a href="${confirmUrl}" style="display:inline-block;padding:10px 16px;border-radius:12px;background:#003084;color:#fff;text-decoration:none">
-                Konfirmasi
-              </a>
-            </p>
-            <p style="color:#64748b">
-              Jika tombol tidak berfungsi, buka link ini: <br/>
-              ${confirmUrl}
-            </p>
-          </div>
-        `
+        html: emailHtml
       });
     } catch (emailError) {
       console.error('Email sending error:', emailError);
@@ -185,53 +212,8 @@ app.get('/confirm', async (req, res) => {
 
     if (error) {
       console.error('Supabase update error:', error);
-      return res.status(500).send(`
-        <!DOCTYPE html>
-        <html lang="id">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Error - Eluna.ID</title>
-            <style>
-              body {
-                font-family: 'Nunito Sans', sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                background: #f87171;
-                padding: 20px;
-              }
-              .card {
-                background: white;
-                padding: 40px;
-                border-radius: 20px;
-                text-align: center;
-                max-width: 500px;
-              }
-              h1 { color: #dc2626; margin-bottom: 16px; }
-              p { color: #64748b; line-height: 1.6; }
-              a {
-                display: inline-block;
-                margin-top: 20px;
-                padding: 12px 24px;
-                background: #dc2626;
-                color: white;
-                text-decoration: none;
-                border-radius: 12px;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="card">
-              <h1>❌ Gagal Konfirmasi</h1>
-              <p>Maaf, terjadi kesalahan saat mengkonfirmasi email.</p>
-              <p>Error: ${error.message}</p>
-              <a href="/">Kembali ke Halaman Utama</a>
-            </div>
-          </body>
-        </html>
-      `);
+      const errorHtml = await loadErrorTemplate(error.message);
+      return res.status(500).send(errorHtml);
     }
 
     console.log('Update result:', data);
@@ -242,155 +224,14 @@ app.get('/confirm', async (req, res) => {
       console.log('Successfully confirmed email:', email);
     }
     
-    // Send confirmation page
-    res.send(`
-      <!DOCTYPE html>
-      <html lang="id">
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <title>Terima Kasih - Eluna.ID</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com">
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-          <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-            }
-            body {
-              font-family: 'Nunito Sans', Inter, Arial, sans-serif;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              min-height: 100vh;
-              background: linear-gradient(135deg, #003084 0%, #0066CC 50%, #4A90E2 100%);
-              padding: 20px;
-            }
-            .card {
-              background: white;
-              padding: 60px 40px;
-              border-radius: 24px;
-              box-shadow: 0 30px 90px rgba(0,0,0,0.4);
-              text-align: center;
-              max-width: 600px;
-              width: 100%;
-              animation: slideUp 0.6s ease-out;
-            }
-            @keyframes slideUp {
-              from {
-                opacity: 0;
-                transform: translateY(30px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            .icon {
-              font-size: 80px;
-              margin-bottom: 20px;
-              animation: bounce 1s ease-in-out;
-            }
-            @keyframes bounce {
-              0%, 100% { transform: translateY(0); }
-              50% { transform: translateY(-20px); }
-            }
-            h1 { 
-              color: #003084; 
-              margin-bottom: 16px;
-              font-size: 32px;
-              font-weight: 800;
-            }
-            .email {
-              color: #003084;
-              font-weight: 700;
-              font-size: 18px;
-            }
-            p { 
-              color: #64748b; 
-              line-height: 1.8;
-              margin-bottom: 12px;
-              font-size: 16px;
-            }
-            .highlight {
-              background: linear-gradient(135deg, #003084 0%, #0066CC 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-              font-weight: 700;
-            }
-            a {
-              display: inline-block;
-              margin-top: 30px;
-              padding: 16px 40px;
-              background: linear-gradient(135deg, #003084 0%, #0066CC 100%);
-              color: white;
-              text-decoration: none;
-              border-radius: 16px;
-              font-weight: 700;
-              font-size: 16px;
-              transition: all 0.3s ease;
-              box-shadow: 0 4px 15px rgba(0, 48, 132, 0.3);
-            }
-            a:hover {
-              transform: translateY(-3px);
-              box-shadow: 0 8px 25px rgba(0, 48, 132, 0.5);
-            }
-            a:active {
-              transform: translateY(-1px);
-            }
-            .benefits {
-              margin-top: 30px;
-              padding-top: 30px;
-              border-top: 2px solid #f1f5f9;
-            }
-            .benefit-item {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 10px;
-              margin: 12px 0;
-              color: #475569;
-              font-size: 15px;
-            }
-            .benefit-icon {
-              font-size: 24px;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="card">
-            <div class="icon">🎉</div>
-            <h1>Terima Kasih Sudah Bergabung!</h1>
-            <p>Email <span class="email">${email}</span> resmi terdaftar dalam waiting list Eluna.ID.</p>
-            <p>Kami akan menghubungi kamu segera saat <span class="highlight">pre-launch</span>!</p>
-            
-            <div class="benefits">
-              <div class="benefit-item">
-                <span class="benefit-icon">🎯</span>
-                <span>Prioritas pemilihan username</span>
-              </div>
-              <div class="benefit-item">
-                <span class="benefit-icon">💎</span>
-                <span>Bonus poin eksklusif</span>
-              </div>
-              <div class="benefit-item">
-                <span class="benefit-icon">💬</span>
-                <span>Early access ke fitur baru</span>
-              </div>
-            </div>
-            
-            <a href="/">Kembali ke Halaman Utama</a>
-          </div>
-        </body>
-      </html>
-    `);
+    // Load and send thank you page
+    const thankYouHtml = await loadThankYouTemplate(email);
+    res.send(thankYouHtml);
     
   } catch (error) {
     console.error('Confirmation error:', error);
-    return res.status(500).send('Terjadi kesalahan saat konfirmasi');
+    const errorHtml = await loadErrorTemplate(error.message);
+    return res.status(500).send(errorHtml);
   }
 });
 
